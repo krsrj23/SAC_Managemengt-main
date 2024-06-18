@@ -1,0 +1,61 @@
+<%- include('./partials/header.ejs') %>
+
+<div class="app-content">
+    <%- include('./partials/sidebar.ejs') %>
+    <div class="projects-section">
+        <div class="projects-section-header">
+            <h1>All Alloted Rooms by <%= user.name %></h1>
+        </div>
+        <div class="container wrapper">
+            <table class="table table-bordered table-hover" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="col-md-2">Name</th>
+                        <th class="col-md-2">Room Name</th>
+                        <th class="col-md-2">Day</th>
+                        <th class="col-md-2">Start time</th>
+                        <th class="col-md-2">End time</th>
+                        <th class="col-md-2">Status</th>
+                    </tr>
+                </thead>
+                <tfoot style="background-color: #ccc;;">
+                    <tr>
+                        <th>Name</th>
+                        <th>Room Name</th>
+                        <th>Day</th>
+                        <th>Start time</th>
+                        <th>End time</th>
+                        <th>Status</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <% room_allotments.forEach((allotment) => { %>
+                    <tr>
+                        <td><%= allotment.name %></td>
+                        <td><%= allotment.r_name %></td>
+                        <td><%= new Date(allotment.start_time).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+                        <td><%= new Date(allotment.start_time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) %></td>
+                        <td><%= new Date(allotment.end_time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) %></td>
+                        <td><%= allotment.status %></td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+         <!-- Back button -->
+         <a href="/user/<%= user.s_id %>" class="back-button">Back to Dashboard</a>
+    </div>
+</div>
+<!-- partial -->
+<script src="//code.jquery.com/jquery-1.12.3.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<script src="/user/javascript/room_view.js"></script>
+
+
+<!-- partial -->
+<script src="/user/javascript/index.js"></script>
+</body>
+
+</html>

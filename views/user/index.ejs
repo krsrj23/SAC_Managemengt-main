@@ -1,0 +1,115 @@
+<%- include('./partials/header.ejs') %>
+
+    <div class="app-content">
+        <%- include('./partials/sidebar.ejs') %>
+
+            <div class="projects-section">
+                <div class="projects-section-header">
+                    <p>Rooms</p>
+                    <p class="time">
+                        <%=  new Date().toLocaleString("default", { month: "long" }) + ', ' +new Date().getDate() %>
+                    </p>
+                </div>
+
+                <div class="projects-section-line">
+                    <div class="projects-status">
+                        <div class="item-status">
+                            <span class="status-number">
+                                <%= rooms.length%>
+                            </span>
+                            <span class="status-type">Total rooms</span>
+                        </div>
+                        <div class="item-status">
+                            <span class="status-number"><%= booking.length %></span>
+                            <span class="status-type">Rooms alloted to u</span>
+                        </div>
+
+                    </div>
+                    <div class="view-actions">
+                        <button class="view-btn list-view" title="List View">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-list">
+                                <line x1="8" y1="6" x2="21" y2="6" />
+                                <line x1="8" y1="12" x2="21" y2="12" />
+                                <line x1="8" y1="18" x2="21" y2="18" />
+                                <line x1="3" y1="6" x2="3.01" y2="6" />
+                                <line x1="3" y1="12" x2="3.01" y2="12" />
+                                <line x1="3" y1="18" x2="3.01" y2="18" />
+                            </svg>
+                        </button>
+                        <button class="view-btn grid-view active" title="Grid View">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-grid">
+                                <rect x="3" y="3" width="7" height="7" />
+                                <rect x="14" y="3" width="7" height="7" />
+                                <rect x="14" y="14" width="7" height="7" />
+                                <rect x="3" y="14" width="7" height="7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="project-boxes jsGridView">
+                    <% rooms.forEach( (room, index) => { %>
+                        <div class="project-box-wrapper">
+                            <div class="project-box" style="background-color: <%= index % 2 === 0 ? '#fee4cb' : '#d5deff' %>">
+                                <div class="project-box-header">
+                                    <span><%=  new Date().toLocaleString("default", { month: "long" }) + ' ' +new Date().getDate() + ', ' + new Date().getFullYear() %></span>
+                                    <div class="more-wrapper">
+                                        <button class="project-btn-more">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-more-vertical">
+                                                <circle cx="12" cy="12" r="1" />
+                                                <circle cx="12" cy="5" r="1" />
+                                                <circle cx="12" cy="19" r="1" />
+                                            </svg>
+                                        </button>
+                                        
+                                    </div>
+                                </div>
+                                <div class="project-box-content-header">
+                                    <p class="box-content-header">
+                                        <%= room.r_name %>
+                                    </p>
+                                    <p class="box-content-subheader">Prototyping</p>
+                                </div>
+                                <div class="box-progress-wrapper">
+                                    <p class="box-progress-header">Booking</p>
+                                    <div class="box-progress-bar">
+                                        <span class="box-progress" style="width: 60%; background-color: <%= index % 2 === 0 ? '#ff942e' : '#4067f9' %>"></span>
+
+                                    </div>
+                                    <p class="box-progress-percentage">60%</p>
+                                </div>
+                                <div class="project-box-footer">
+                                    <div class="participants">
+                                        Allot room
+                                        <a class="add-participant" href="/user/<%= user.s_id %>/room/<%= room.r_id %>/allot" style="color: <%= index % 2 === 0 ? '#ff942e' : '#4067f9' %>">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-plus">
+                                                <path d="M12 5v14M5 12h14" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <a href="/user/<%= user.s_id %>/room/<%= room.r_id %>" class="days-left"
+                                        style="color: <%= index % 2 === 0 ? '#ff942e' : '#4067f9' %>">
+                                        View room
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+            
+            <!-- partial -->
+            <script src="/user/javascript/index.js"></script>
+            </body>
+
+            </html>
