@@ -53,5 +53,5 @@ We would like to thank the following contributors for their valuable contributio
 
 ## Contact
 
-For any inquiries or feedback, please contact us at pallavkumar6200@gmail.com.
+For any inquiries or feedback, please contact us at devsuraj1104@gmail.com.
 
